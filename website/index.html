@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medi Token</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    async function login() {
+
+      let url = 'http://localhost:3001/api/users/login/'
+      var inputEmail = document.getElementById("inputEmail").value;
+      var inputPwd = document.getElementById("inputPassword").value;
+      
+      await axios
+      .post(
+        url, {
+          email: inputEmail,
+        password: inputPwd
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.username);
+        console.log(res.data.valid);
+        console.log(res.data.userId);
+
+        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("userId", res.data.userId);
+        console.log(localStorage.getItem("username"));
+
+        if (res.data.valid == true) {
+        window.location.assign("http://127.0.0.1:5500/dashboard.html");
+      } else {
+        console.log("Incorrect email or password. Try again!");
+      }
+      })
+      .catch((err) => {console.error(err)})
+    }
+
+    console.log("username" + username);
+    </script>
+</head>
+<body>
+    
+    <div class="container text-white">
+        <div class="row align-items-center" style="min-height: 100vh">
+          <div class="col">
+            <img id="landing-logo" src="./img/logo-medi-token.png"  alt="">
+            </div>
+
+          <div class="col">
+            <div class="col-sm">
+              <p class="h1">User Login</p>
+                <form id="login-form">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                      placeholder="Enter email">
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                  </div>
+                  <button id="btn-login" class="btn btn-primary btn-lg rounded-pill"
+                    onclick="login(); ">Login</button> <a href="./signup.html" class="link-primary">Create an account.</a>
+                </form>
+                
+              </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
