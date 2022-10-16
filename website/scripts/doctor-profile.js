@@ -71,7 +71,7 @@ async function displayProfile() {
                                             <div class="text-right">
                                             <a href="./dashboard.html" class="btn btn-secondary btn-md" role="button" >Go Back</a>
                                                 <button id="btn-update" type="button" id="submit" name="submit"
-                                                    class="btn btn-primary">Book Token</button>
+                                                    class="btn btn-primary" onclick="pdf()">Book Token</button>
                                             </div>
                                         </div>
                                     </div>
