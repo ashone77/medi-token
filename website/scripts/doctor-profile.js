@@ -61,13 +61,9 @@ async function displayProfile() {
                                     </div>
                                     <div class="row gutters">
                                         <div class="form-group">
-                                            <label for="sel1">Pick Time</label>
-                                            <select class="form-control" id="sel1">
-                                              <option>1</option>
-                                              <option>2</option>
-                                              <option>3</option>
-                                              <option>4</option>
-                                            </select>
+                                        <label for="exampleInputPassword1">Book Slot</label> </br>
+                                        <small>Enter a time of your choice between the Start and End times.</small>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="HR:MM AM/PM">
                                           </div>
                                     </div>
                                     <div class="row gutters">
