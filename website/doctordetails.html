@@ -16,10 +16,13 @@
     
 </head>
 <script>
-  function generatePDF(){
-    var element = document.getElementById('token-template');
+ function confirmTime(){
 
-}
+  let tokenTime = document.getElementById("token-time").value;
+  localStorage.setItem("token-time", tokenTime);
+  alert("Time selected.");
+
+ }
 </script>
 <body>
     <!-- navbar -->
@@ -127,13 +130,17 @@
     </div>
     </div>
    
-    <div id="token-template">
+    <div id="token-template" style="display: none">
+      
       
       <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Token</div>
-        <div class="card-body">
-          <h5 class="card-title">Name : </h5>
-          <p class="card-text">Date : </p>
+        <div class="card-header">
+          <img src="./img/logo-medi-token.png" alt="" height="30">
+          <strong>Invoice</strong>
+        </div>
+        <div id="token-body" class="card-body">
+          
+          
         </div>
     </div>
     
@@ -148,11 +155,24 @@
 <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 <script>
     function pdf(){
-        var element = document.getElementById('token-template');
+        var name = localStorage.getItem("username");
+        const date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let currentDate = `${day}-${month}-${year}`;
+        let nameHTML = `<h5 id="token-username" class="card-title">Name : ${name}</h5>
+        <p class="card-text">Invoice Date :  ${currentDate}</br> Token Time : ${localStorage.getItem("token-time")}</p>
+
+        `;
+        let container = document.getElementById("token-body");
+        container.innerHTML = nameHTML;
+
+        var element = document.getElementById('token-template').innerHTML;
         var opt = {
           margin:       1,
           filename:     'token.pdf',
-          image:        { type: 'jpeg', quality: 0.99 },
+          image:        { type: 'jpeg', quality: 0.80 },
           html2canvas:  { scale: 2 },
           jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
